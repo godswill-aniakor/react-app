@@ -3,4 +3,14 @@ services:
   - docker
 
 script:
-  - docker build -t react-app .
+  - docker build -t godswillaniakor/react-example2 .
+  - docker images godswillaniakor/react-example2
+
+before_deploy:
+  - docker login -u godswillaniakor -p 1_Chiwuzie
+
+deploy:
+  provider: script
+  script: docker push godswillaniakor/react-example2
+  on:
+    branch: master
